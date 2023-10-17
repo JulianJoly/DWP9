@@ -8,53 +8,386 @@
  Description: Thème enfant à l'ocasion de la nomination aux Oscars Shorts
  Version: 1.0
  */
-.animation {
-  animation-duration: 1s;
-  animation-iteration-count: 1;
+/* Global */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5px, 10px);
+  }
+  20% {
+    transform: translate(-10px, -5px);
+  }
+  30% {
+    transform: translate(10px, 0);
+  }
+  40% {
+    transform: translate(5px, -10px);
+  }
+  50% {
+    transform: translate(10px, 10px);
+  }
+  60% {
+    transform: translate(5px, -5px);
+  }
+  70% {
+    transform: translate(-5px, -10px);
+  }
+  80% {
+    transform: translate(0, -5px);
+  }
+  90% {
+    transform: translate(-10px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-.banner, .logo, .story__article--paragraph {
-  animation-fill-mode: both;
+.slide-title {
+  transform: translateY(100%);
+  transition: transform 0.5s 1.25s linear;
+  position: relative;
+  display: inline-block;
 }
 
-.banner + .animation {
-  animation-name: fadeSlideDown;
+.slide-fade-in {
+  opacity: 1 !important;
+}
+.slide-fade-in p {
+  transform: translateY(0);
+  transition: all 1s ease-in-out;
+}
+.slide-fade-in, .slide-fade-in .slide-title {
+  transform: translateY(0) !important;
+}
+
+.title-wrapper {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.swiper-slide-shadow-coverflow {
+  filter: brightness(70%) blur(3px);
+  background-repeat: no-repeat;
+  background-size: 400px 400px;
+  background-position-y: 15px;
+}
+
+.swiper-slide-visible:not(.swiper-slide-next) figcaption {
+  filter: blur(3px);
+  transition-duration: 0ms;
+}
+
+/* Body */
+.main-navigation.toggled .nav-menu {
+  opacity: 1 !important;
+  visibility: visible;
+}
+.main-navigation.toggled .slide-links {
+  transform: translateY(0) !important;
+}
+.main-navigation .site-title {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  position: relative;
+}
+.main-navigation .menu-toggle {
+  display: block;
+  position: absolute;
+  right: 5%;
+  cursor: pointer;
+}
+.main-navigation .menu-close {
+  font-size: 30px;
+  display: none;
+  line-height: 10px;
+  width: 20px;
+}
+.main-navigation .nav-menu {
+  visibility: hidden;
+  transition: opacity 0.25s linear;
+  display: flex !important;
+  position: fixed;
+  flex-direction: column;
+  top: 0%;
+  z-index: 100;
+  width: 100vw;
+  max-width: 1440px;
+  height: calc(100vh - 80px);
+  margin-top: 80px;
+  background: #FFF5E9;
+  padding: 10% 0;
+  overflow: hidden;
+}
+.main-navigation .nav-menu img {
+  position: absolute;
+}
+.main-navigation .nav-menu__bg--logo {
+  top: 20px;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 0s;
+}
+.main-navigation .nav-menu__bg--jaakuna {
+  top: 400px;
+  left: 1085px;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+.main-navigation .nav-menu__bg--onejiiro {
+  left: 50px;
+  top: 675px;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+.main-navigation .nav-menu__bg--kawaneko {
+  left: 250px;
+  top: 155px;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+.main-navigation .nav-menu__bg--hibiscus {
+  left: 1115px;
+  top: 550px;
+  animation: rotate 20s linear infinite;
+}
+.main-navigation .nav-menu__bg--sunflower {
+  left: 1080px;
+  top: 100px;
+  scale: 1.4;
+  animation: rotate 20s linear infinite;
+}
+.main-navigation .nav-menu__bg--flower {
+  scale: 0.35;
+  left: 1335px;
+  top: 260px;
+  animation: rotate 20s linear infinite;
+}
+.main-navigation .nav-menu__bg--orchid {
+  top: 70px;
+  left: -60px;
+  animation: rotate 20s linear infinite;
+}
+.main-navigation .nav-menu__bg--flowers {
+  left: 180px;
+  top: 410px;
+  scale: 0.6;
+  animation: rotate 20s linear infinite;
+}
+.main-navigation .site-link {
+  font-size: 64px;
+}
+.main-navigation .site-link .slide-links {
+  transform: translateY(100%);
+  transition: transform 0.25s 0.25s linear;
+  position: relative;
+  display: inline-block;
+}
+.main-navigation .site-link :hover {
+  color: black;
+  text-shadow: 0 0 14px #FF5C00;
+}
+.main-navigation__link--banner {
+  position: absolute !important;
+  bottom: 2.5%;
+  letter-spacing: 2px;
+  font-size: 18px;
 }
 
 .logo {
-  animation-name: fadeSlideUp;
+  position: absolute;
+  margin-top: 0 !important;
+  top: 0;
+  animation: float 5s ease-in-out infinite;
+  animation-delay: 0s;
 }
 
-.story__article--paragraph {
-  animation-name: fade;
+.parallax-logo .logo {
+  transition: translate 0s linear !important;
+}
+
+.banner,
+.logo,
+.studio,
+.site-footer,
+.oscars {
   opacity: 0;
+  transition: all 1s ease-in-out;
 }
 
-@keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
+.logo,
+.studio,
+.site-footer,
+.oscars {
+  transform: translateY(200px);
+}
+
+.banner {
+  transform: translateY(-100px);
+  overflow: hidden;
+}
+.banner--video {
+  position: absolute;
+  left: 0;
+}
+
+.story {
+  overflow: hidden;
+}
+.story__characters, .story__place, .story__article {
+  opacity: 0;
+  transition: all 1s ease-in-out;
+  transform: translateY(200px);
+}
+.story__characters--title, .story__place--title, .story__article--title {
+  height: 3.5em;
+}
+.story__place--paragraph, .story__article--paragraph {
+  transform: translateY(-200px);
+  transition: all 1s ease-in-out;
+}
+.story__article--title::after, .story__article::after {
+  animation: rotate 20s linear infinite;
+}
+.story__article--title::after {
+  transform-origin: 77.5px 77.5px;
+  left: -44% !important;
+}
+.story__article--title::before {
+  left: -50% !important;
+}
+.story__article::after {
+  transform-origin: 94px 94px;
+}
+.story__characters--slider {
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  margin-left: 8em;
+}
+.story__characters--title {
+  margin-bottom: 1em;
+}
+.story__place {
+  background-image: url("../foce-child/assets/images/place-bg.png") !important;
+}
+.story__place--big-cloud, .story__place--little-cloud {
+  position: absolute;
+  filter: blur(15px);
+}
+.story__place--big-cloud {
+  top: 10%;
+}
+.story__place--little-cloud {
+  top: 35%;
+}
+
+.swiper {
+  padding-bottom: 50px;
+}
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 400px;
+  height: 400px;
+}
+.swiper-slide img {
+  display: block;
+  max-height: 400px;
+}
+.swiper-wrapper {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.studio {
+  overflow: hidden;
+}
+.studio--paragraph {
+  transform: translateY(-200px);
+  transition: all 1s ease-in-out;
+}
+.studio--title {
+  line-height: 100%;
+}
+.studio--title::after, .studio--title::before {
+  animation: rotate 20s linear infinite;
+}
+
+.oscars {
+  margin-top: 3em;
+}
+.oscars__div {
+  display: flex;
+  justify-content: space-between;
+  width: 66.66%;
+  margin: auto;
+}
+.oscars__div--title {
+  font-size: 2.214rem;
+  background-image: url(../foce-child/assets/images/orange-bg.png);
+  padding: 2em;
+  text-align: left;
+  text-shadow: 0.1em 0.1em 0.1em #b66300;
+  margin: auto;
+}
+.oscars__div--image {
+  margin: auto;
+}
+
+.site-footer__list::after, .site-footer::after {
+  animation: rotate 20s linear infinite;
+}
+.site-footer::before {
+  animation: rotate 20s linear infinite;
+}
+.site-footer__links::after {
+  animation: rotate 20s linear infinite;
+}
+
+/* Media */
+@media all and (max-width: 1338px) {
+  .oscars__div {
+    flex-direction: column;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  .oscars__div--title {
+    width: 86%;
+    font-size: 3vw;
   }
 }
-@keyframes fadeSlideDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-100px);
+@media all and (max-width: 699px) {
+  html {
+    scroll-padding-top: 30px;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  .oscars__div--title {
+    display: none;
+  }
+  .site-title {
+    display: none !important;
   }
 }
-@keyframes fade {
-  0% {
-    opacity: 0;
+@media screen and (min-width: 700px) {
+  .menu-toggle, .site-title {
+    top: 30%;
   }
-  100% {
-    opacity: 1;
+}
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }/*# sourceMappingURL=style.css.map */
