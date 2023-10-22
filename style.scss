@@ -112,6 +112,9 @@ html {
     }
 }
 /* Body */
+.menu-toggle, .site-title {
+    top: 30%;
+}
 .main-navigation {
     &.toggled {
         .nav-menu {
@@ -156,6 +159,7 @@ html {
         overflow: hidden;
         img {
             position: absolute;
+            z-index: -1;
         }
         &__bg {
             &--logo {
@@ -164,7 +168,7 @@ html {
             }
             &--jaakuna {
                 top: 400px;
-                left: 1085px;
+                right: 200px;
                 @include float(.5s)
             }
             &--onejiiro {
@@ -178,19 +182,19 @@ html {
                 @include float(1.5s)
             }
             &--hibiscus {
-                left: 1115px;
+                right: -320px;
                 top: 550px;
                 @include rotate()
             }
             &--sunflower {
-                left: 1080px;
+                right: 205px;
                 top: 100px;
                 scale: 1.4;
                 @include rotate()
             }
             &--flower {
                 scale: .35;
-                left: 1335px;
+                right: -98px;
                 top: 260px;
                 @include rotate()
             }
@@ -303,15 +307,18 @@ html {
         }
     }
     &__characters {
+        max-width: 100%;
+        margin: 5% 0 5% 0 !important;
         &--slider {
-            max-width: 1440px;
+            padding: 0 0 5% 5%;
             display: flex;
             flex-direction: column;
             align-items: baseline;
-            margin-left: 8em;
-        }
-        &--title {
-            margin-bottom: 1em;
+            figure {
+                &, figcaption {
+                    max-width: 400px;
+                }
+            }
         }
     }
     &__place {
@@ -330,7 +337,9 @@ html {
     }
 }
 .swiper {
-    padding-bottom: 50px;
+    &-wrapper {
+    width: fit-content;
+  }
     &-slide {
     background-position: center;
     background-size: cover;
@@ -340,9 +349,6 @@ html {
         display: block;
         max-height: 400px;
     }
-  }
-    &-wrapper {
-    width: fit-content;
   }
 }
 .studio {
@@ -395,7 +401,19 @@ html {
     }
 }
 /* Media */
-@media all and (max-width: 1338px) {
+@media all and (max-width: 1440px) {
+    .story {
+        &__characters {
+            &--slider {
+                width: 100vw;
+/*                 figure {
+                    img {
+                        width: 27.7vw;
+                    }
+                } */
+            }
+        }
+    }
     .oscars {
         &__div {
             flex-direction: column;
@@ -406,27 +424,112 @@ html {
         }
     }
 }
+@media all and (max-width: 1300px) {
+    .nav-menu {
+        &__bg {
+            &--kawaneko,
+            &--jaakuna,
+            &--sunflower,
+            &--flowers {
+                display: none !important;
+            }
+        }
+    }
+    .swiper-slide-visible {
+        + .swiper-slide-next {
+            figcaption {
+                filter: blur(3px) !important;
+                transition-duration: 0ms !important;
+            }
+        }
+        + .swiper-slide-active {
+            figcaption {
+                filter: none;
+                transition-duration: 0ms;
+            }
+        }
+    }
+}
+@media all and (max-width: 920px) {
+    .story {
+        &__characters {
+            margin: 0 0 5% 0 !important;
+        }
+    }
+    .nav-menu {
+        &__bg {
+            &--onejiiro {
+                display: none !important;
+            }
+        }
+    }
+}
 @media all and (max-width: 699px) {
     html {
         scroll-padding-top: 30px;
     }
+    .main-navigation {
+        position: sticky !important;
+        .nav-menu {
+            height: calc(100vh - 30px);
+            padding: 20% 0 10% 0;
+            &__bg {
+                &--flower,
+                &--hibiscus,
+                &--orchid {
+                    display: none !important;
+                }
+            }
+        }
+        .site-link {
+            font-size: 48px;
+        }
+    }
+    .menu-toggle {
+        top: 0;
+    }
+    .nav-menu {
+        margin-top: 30px !important;
+    }
+    .banner {
+        height: 100vw;
+        &--video {
+            display: none;
+        }
+    }
     .oscars {
         &__div {
             &--title {
-                display: none;
+                width: 100%;
+                font-size: 3.5vw;
             }
         }
     }
-    .site-title {
-        display: none !important;
+}
+@media all and (max-height: 850px) and (min-width: 700px) {
+    .nav-menu {
+        &__bg {
+            &--logo {
+                display: none !important;
+            }
+        }
     }
 }
-@media screen and (min-width: 700px) {
-    .menu-toggle, .site-title {
-        top: 30%;
+@media all and (max-height: 600px) and (max-width: 699px) {
+    .nav-menu {
+        &__bg {
+            &--logo {
+                display: none !important;
+            }
+        }
+    }
+    .main-navigation {
+        .nav-menu {
+            padding: 10% 0 10% 0;
+        }
     }
 }
-@media screen and (prefers-reduced-motion: reduce) {
+@media all and (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
 	}

@@ -31,7 +31,7 @@ observerLogo.observe(banner);
 /* On scroll actions */
 window.onscroll = function() {
   if (placeSection.classList.contains('parallax-clouds')) {
-    var scrollPosition = document.documentElement.scrollTop;
+    let scrollPosition = document.documentElement.scrollTop;
     if (scrollPosition <= 1560) {
       littleCloud.style.left = '350px';
       bigCloud.style.left = '550px';
@@ -44,12 +44,17 @@ window.onscroll = function() {
     }
   }
   if (banner.classList.contains('parallax-logo')) {
-    var scrollPosition = document.documentElement.scrollTop;
-    if (scrollPosition >= 250) {
+    let scrollPosition = document.documentElement.scrollTop;
+    let bigScreenMaxPosition = (1445 / screen.width * 250)
+    let smallScreenMaxPosition = ((100 / screen.width + 1 ) * 497)
+    if (screen.width >= 1440 && scrollPosition >= 250) {
       logo.style.top = '250px';
+    } else if (screen.width < 1440 && screen.width >= 625 && scrollPosition >= bigScreenMaxPosition) {
+      logo.style.top = bigScreenMaxPosition + 'px';
+    } else if (screen.width < 625 && scrollPosition >= smallScreenMaxPosition) {
+      logo.style.top = smallScreenMaxPosition + 'px';
     } else {
       logo.style.top = scrollPosition + 'px';
     }
   }
-
 }

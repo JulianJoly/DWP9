@@ -93,6 +93,10 @@ html {
 }
 
 /* Body */
+.menu-toggle, .site-title {
+  top: 30%;
+}
+
 .main-navigation.toggled .nav-menu {
   opacity: 1 !important;
   visibility: visible;
@@ -136,6 +140,7 @@ html {
 }
 .main-navigation .nav-menu img {
   position: absolute;
+  z-index: -1;
 }
 .main-navigation .nav-menu__bg--logo {
   top: 20px;
@@ -144,7 +149,7 @@ html {
 }
 .main-navigation .nav-menu__bg--jaakuna {
   top: 400px;
-  left: 1085px;
+  right: 200px;
   animation: float 5s ease-in-out infinite;
   animation-delay: 0.5s;
 }
@@ -161,19 +166,19 @@ html {
   animation-delay: 1.5s;
 }
 .main-navigation .nav-menu__bg--hibiscus {
-  left: 1115px;
+  right: -320px;
   top: 550px;
   animation: rotate 20s linear infinite;
 }
 .main-navigation .nav-menu__bg--sunflower {
-  left: 1080px;
+  right: 205px;
   top: 100px;
   scale: 1.4;
   animation: rotate 20s linear infinite;
 }
 .main-navigation .nav-menu__bg--flower {
   scale: 0.35;
-  left: 1335px;
+  right: -98px;
   top: 260px;
   animation: rotate 20s linear infinite;
 }
@@ -273,15 +278,18 @@ html {
 .story__article::after {
   transform-origin: 94px 94px;
 }
+.story__characters {
+  max-width: 100%;
+  margin: 5% 0 5% 0 !important;
+}
 .story__characters--slider {
-  max-width: 1440px;
+  padding: 0 0 5% 5%;
   display: flex;
   flex-direction: column;
   align-items: baseline;
-  margin-left: 8em;
 }
-.story__characters--title {
-  margin-bottom: 1em;
+.story__characters--slider figure, .story__characters--slider figure figcaption {
+  max-width: 400px;
 }
 .story__place {
   background-image: url("../foce-child/assets/images/place-bg.png") !important;
@@ -297,8 +305,9 @@ html {
   top: 35%;
 }
 
-.swiper {
-  padding-bottom: 50px;
+.swiper-wrapper {
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .swiper-slide {
   background-position: center;
@@ -309,10 +318,6 @@ html {
 .swiper-slide img {
   display: block;
   max-height: 400px;
-}
-.swiper-wrapper {
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .studio {
@@ -361,7 +366,15 @@ html {
 }
 
 /* Media */
-@media all and (max-width: 1338px) {
+@media all and (max-width: 1440px) {
+  .story__characters--slider {
+    width: 100vw;
+    /*                 figure {
+                        img {
+                            width: 27.7vw;
+                        }
+                    } */
+  }
   .oscars__div {
     flex-direction: column;
   }
@@ -370,23 +383,75 @@ html {
     font-size: 3vw;
   }
 }
+@media all and (max-width: 1300px) {
+  .nav-menu__bg--kawaneko, .nav-menu__bg--jaakuna, .nav-menu__bg--sunflower, .nav-menu__bg--flowers {
+    display: none !important;
+  }
+  .swiper-slide-visible + .swiper-slide-next figcaption {
+    filter: blur(3px) !important;
+    transition-duration: 0ms !important;
+  }
+  .swiper-slide-visible + .swiper-slide-active figcaption {
+    filter: none;
+    transition-duration: 0ms;
+  }
+}
+@media all and (max-width: 920px) {
+  .story__characters {
+    margin: 0 0 5% 0 !important;
+  }
+  .nav-menu__bg--onejiiro {
+    display: none !important;
+  }
+}
 @media all and (max-width: 699px) {
   html {
     scroll-padding-top: 30px;
   }
-  .oscars__div--title {
+  .main-navigation {
+    position: sticky !important;
+  }
+  .main-navigation .nav-menu {
+    height: calc(100vh - 30px);
+    padding: 20% 0 10% 0;
+  }
+  .main-navigation .nav-menu__bg--flower, .main-navigation .nav-menu__bg--hibiscus, .main-navigation .nav-menu__bg--orchid {
+    display: none !important;
+  }
+  .main-navigation .site-link {
+    font-size: 48px;
+  }
+  .menu-toggle {
+    top: 0;
+  }
+  .nav-menu {
+    margin-top: 30px !important;
+  }
+  .banner {
+    height: 100vw;
+  }
+  .banner--video {
     display: none;
   }
-  .site-title {
+  .oscars__div--title {
+    width: 100%;
+    font-size: 3.5vw;
+  }
+}
+@media all and (max-height: 850px) and (min-width: 700px) {
+  .nav-menu__bg--logo {
     display: none !important;
   }
 }
-@media screen and (min-width: 700px) {
-  .menu-toggle, .site-title {
-    top: 30%;
+@media all and (max-height: 600px) and (max-width: 699px) {
+  .nav-menu__bg--logo {
+    display: none !important;
+  }
+  .main-navigation .nav-menu {
+    padding: 10% 0 10% 0;
   }
 }
-@media screen and (prefers-reduced-motion: reduce) {
+@media all and (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
